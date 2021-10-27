@@ -49,12 +49,12 @@ class TransactionController extends Controller
             'items' => 'required|array',
             'items.*.id' => 'exists:products,id',
             'total_price' => 'required',
-            'shipping_price' => 'required',
+            'atas_nama' => 'required',
             'status' => 'required|in:PENDING,SUCCESS'
         ]);
 
         $transaction = Transaction::create([
-            'users_id' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
             'atas_nama' => $request->atas_nama,
             'no_meja' => $request->no_meja,
             'total_price' => $request->total_price,
@@ -66,7 +66,7 @@ class TransactionController extends Controller
             TransactionItems::create([
             'users_id' => Auth::user()->id,
             'products_id' => $product['id'],
-            'transactions_id' => $transaction->id,
+            'transaction_id' => $transaction->id,
             'quantity' => $product['quantity']
             ]);
         }
