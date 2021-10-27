@@ -17,7 +17,7 @@ class AddFieldToUsersTable extends Migration
             $table->after('email', function ($table) {
                 $table->string('username');
                 $table->string('phone');
-                $table->string('roles');
+                $table->string('roles')->default('USER');
             });
 
         });

@@ -58,8 +58,8 @@ class TransactionController extends Controller
             'atas_nama' => $request->atas_nama,
             'no_meja' => $request->no_meja,
             'total_price' => $request->total_price,
-            'shipping_price' => $request->shipping_price,
             'status' => $request->status,
+            'catatan' => $request->catatan,
         ]);
 
         foreach ($request->items as $product) {
