@@ -17,5 +17,15 @@ module.exports = {
         },
     },
 
+    variants: {
+        extend: {
+          backgroundColor: ['active'],
+          // ...
+          borderColor: ['focus-visible', 'first'],
+          // ...
+          textColor: ['visited'],
+        }
+      },
+
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
