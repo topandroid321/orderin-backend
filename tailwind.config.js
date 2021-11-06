@@ -6,6 +6,7 @@ module.exports = {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
+        './resources/**/*.blade.php',
         './resources/views/**/*.blade.php',
     ],
 
@@ -14,15 +15,19 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            screens: {
+              sm: '480px',
+              md: '768px',
+              lg: '976px',
+              xl: '1440px',
+            },
         },
     },
 
     variants: {
         extend: {
           backgroundColor: ['active'],
-          // ...
           borderColor: ['focus-visible', 'first'],
-          // ...
           textColor: ['visited'],
         }
       },
