@@ -1,10 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
-        </h2>
-    </x-slot>
-    <div class="py-12">
+@extends('layouts.master_template')
+    @section('content')
+    <h1 class="h5">Add Data Users</h1>
+        <p>
+            {!! __('Dashboard &raquo; Users Data') !!}
+        </p>
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-10">
                 <a href="{{ route('users.create') }}" class="inline-block bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded">
@@ -12,14 +12,14 @@
                 </a>
             </div>
             <div class="">
-                <table class=" table-fixed border-separate border w-full">
+                <table class="table-auto border-collapse border w-full rounded">
                     <thead>
                         <tr class="text-center">
-                            <th class="bg-white border px-6 py-3">ID</th>
-                            <th class="bg-white border px-6 py-3">Name</th>
-                            <th class="bg-white border px-6 py-3">Email</th>
-                            <th class="bg-white border px-6 py-3">Roles</th>
-                            <th class="bg-white border px-6 py-3">Action</th>
+                            <th class="bg-green-300 text-white border px-6 py-3">ID</th>
+                            <th class="bg-green-300 text-white border px-6 py-3">Name</th>
+                            <th class="bg-green-300 text-white border px-6 py-3">Email</th>
+                            <th class="bg-green-300 text-white border px-6 py-3">Roles</th>
+                            <th class="bg-green-300 text-white border px-6 py-3">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,9 +31,9 @@
                                 <td class="border bg-white py-2">{{ $item->roles }}</td>
                                 <td class="border bg-white py-2">
                                     <a href="{{ route('users.edit', $item->id)}}" class="inline-block py-2 px-4 bg-yellow-400 text-white font-bold rounded">Edit</a>
-                                    <form action="{{ route('users.destroy', $item->id) }}" class="inline-block py-2 px-4 bg-red-400 text-white font-bold rounded">
+                                    <form action="{{ route('users.destroy', $item->id) }}" method="POST" class="inline-block py-2 px-4 bg-red-400 text-white font-bold rounded">
                                         {!! method_field('delete') . csrf_field() !!}
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit">
                                             Delete
                                         </button>
                                     </form>
@@ -55,4 +55,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+    @endsection
+   

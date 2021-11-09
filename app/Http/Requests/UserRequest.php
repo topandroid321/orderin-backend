@@ -27,10 +27,11 @@ class UserRequest extends FormRequest
     {
         return [
                 'name' => ['required','string','max:255'],
+                'password' => ['required',$this->passwordRules()],
+                'profile_photo_path' => ['required','image|file|max:1024'],
                 'username' => ['required','string','max:255'],
                 'email' => ['required','string','max:255','unique:users'],
                 'phone' => ['nullable','string','max:255'],
-                'password' => $this->passwordRules(),
         ];
     }
 }

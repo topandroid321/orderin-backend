@@ -22,6 +22,12 @@ module.exports = {
               xl: '1440px',
             },
         },
+        colors: {
+            teal: {
+              1:'#89B5AF',
+          },
+        },
+        
     },
 
     variants: {
