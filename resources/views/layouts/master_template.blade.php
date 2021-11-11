@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="./img/fav.png" type="image/x-icon">  
   <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
   <link rel="stylesheet" type="text/css" href="{{asset('template/dist')}}/css/style.css">  
-  <title>Welcome To Cleopatra</title>
+  <title>ORDERIN-BACKEND</title>
 </head>
 <body class="bg-gray-100">
 @include('layouts.navbar')

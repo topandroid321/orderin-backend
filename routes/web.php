@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,17 @@ Route::get('/', function () {
 
 //dashboard
 
-Route::prefix('dashboard')
-    ->middleware(['auth:sanctum','admin'])
-    ->group(function(){
-        Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('users',UserController::class);
-    });
+Route::group(['middleware' => 'auth'], function(){
+        Route::prefix('dashboard');
+        Route::group(['middleware' => 'role:admin'], function(){
+                Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+                Route::resource('/users', UserController::class);
+                Route::resource('/products', ProductController::class);
+            });
+
+        Route::group(['middleware' => 'role:pegawai'], function () {
+            Route::get('/dashboardPegawai', function(){
+                return 'Hello Users';
+            });
+        });
+ });

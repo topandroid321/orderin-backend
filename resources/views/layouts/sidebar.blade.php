@@ -16,7 +16,7 @@
       <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Dashboard</p>
 
       <!-- link -->
-      <a href="{{route('dashboard')}}" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+      <a href="/dashboard" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fad fa-chart-pie text-xs mr-2"></i>                
         Dashboard
       </a>
@@ -24,7 +24,7 @@
 
       <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">MASTER DATA</p>
       <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+      <a href="/products" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fad fa-folder-open text-xs mr-2"></i>
         Product
       </a>
@@ -43,7 +43,7 @@
       <!-- end link -->
 
       <!-- link -->
-      <a href="/dashboard/users" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+      <a href="/users" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fad fa-folder-open text-xs mr-2"></i>
         Users Data
       </a>

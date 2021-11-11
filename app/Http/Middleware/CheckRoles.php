@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class CheckRoles
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,14 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->roles == 'ADMIN'){
-            return $next($request);
+        $roles = Role::all();
+
+        foreach ($roles as $roleFromDb){
+            if ($roles == $roleFromDb->name && auth()->user()->role_id != $roleFromDb->id) {
+                return abort(403);
+            }
         }
 
-        return redirect('/');
+        return $next($request);
     }
 }

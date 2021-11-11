@@ -17,7 +17,8 @@ class AddFieldToUsersTable extends Migration
             $table->after('email', function ($table) {
                 $table->string('username');
                 $table->string('phone');
-                $table->string('roles')->default('USER');
+                $table->unsignedBigInteger('role_id')->nullable();
+                $table->foreign('role_id')->references('id')->on('users')->onDelete('set null');
             });
 
         });
@@ -33,7 +34,8 @@ class AddFieldToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('username');
             $table->dropColumn('phone');
-            $table->dropColumn('roles');
+            $table->dropForeign('users_role_id_foreign');
+            $table->dropColumn('role_id');
         });
     }
 }
