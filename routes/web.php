@@ -16,24 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//hompage
-Route::get('/', function () {
+Route::get('/', function(){
     return redirect()->route('dashboard');
 });
 
 //dashboard
 
 Route::group(['middleware' => 'auth'], function(){
-        Route::prefix('dashboard');
         Route::group(['middleware' => 'role:admin'], function(){
                 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
                 Route::resource('/users', UserController::class);
                 Route::resource('/products', ProductController::class);
             });
 
-        Route::group(['middleware' => 'role:pegawai'], function () {
-            Route::get('/dashboardPegawai', function(){
-                return 'Hello Users';
-            });
+        Route::group(['middleware' => 'role:Pegawai'], function () {
+            Route::get('/dashboardPegawai',[DashboardController::class, 'dashboardPegawai']);
+            Route::resource('/productsUser', ProductController::class);
+
         });
  });

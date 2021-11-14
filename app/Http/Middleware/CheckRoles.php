@@ -15,13 +15,13 @@ class CheckRoles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, string $role)
     {
-        $roles = Role::all();
+        $rolesFromDatabase = Role::all();
 
-        foreach ($roles as $roleFromDb){
-            if ($roles == $roleFromDb->name && auth()->user()->role_id != $roleFromDb->id) {
-                return abort(403);
+        foreach ($rolesFromDatabase as $roles) {
+            if ($role == $roles->name && auth()->user()->role_id != $roles->id) {
+                abort(403);
             }
         }
 

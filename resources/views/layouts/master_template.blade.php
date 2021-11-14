@@ -15,7 +15,11 @@
 
 <!-- strat wrapper -->
 <div class="h-screen flex flex-row flex-wrap">
-  @include('layouts.sidebar')
+    @if (Auth::user()->role_id === 1)
+    @include('layouts.sidebar')
+    @elseif (Auth::user()->role_id === 2)
+    @include('layouts.sidebar_pegawai')
+    @endif
 
   <!-- strat content -->
   <div class="bg-gray-100 flex-1 p-6 md:mt-16"> 

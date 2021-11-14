@@ -13,5 +13,9 @@ class Role extends Model
         'name',
         'redirect_to',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'role_id', 'id');
+    }
     
 }

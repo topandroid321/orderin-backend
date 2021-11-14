@@ -16,9 +16,9 @@
       <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Dashboard</p>
 
       <!-- link -->
-      <a href="/dashboard" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+      <a href="/dashboardPegawai" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fad fa-chart-pie text-xs mr-2"></i>                
-        Dashboard
+        Dashboard Pegawai
       </a>
       <!-- end link -->
 
@@ -28,27 +28,6 @@
         <i class="fad fa-folder-open text-xs mr-2"></i>
         Product
       </a>
-      <!-- end link -->
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fad fa-folder-open text-xs mr-2"></i>
-        Product Category
-      </a>
-      <!-- end link -->
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fad fa-folder-open text-xs mr-2"></i>
-        Product Galeries
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="/users" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fad fa-folder-open text-xs mr-2"></i>
-        Users Data
-      </a>
-      <!-- end link --> 
-      
       
       <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">Transactions</p>
 
@@ -62,15 +41,6 @@
       <a href="./typography.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fad fa-text text-xs mr-2"></i>
         Data Transactions
-      </a>
-      <!-- end link -->
-
-      <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">Report</p>
-
-      <!-- link -->
-      <a href="./typography.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fad fa-text text-xs mr-2"></i>
-        Report Transaction
       </a>
       <!-- end link -->
 

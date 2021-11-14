@@ -10,4 +10,12 @@ class DashboardController extends Controller
     {
         return view('dashboard');
     }
+
+    public function dashboardPegawai(){
+        return view('dashboardPegawai');
+    }
+
+    public function dashboardKoki(){
+        return view('dashboardPegawai');
+    }
 }
