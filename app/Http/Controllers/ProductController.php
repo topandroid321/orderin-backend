@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -27,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        return view('products.create');
     }
 
     /**
@@ -36,9 +38,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $data = $request->all();
+        Product::create($data);
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -58,9 +63,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product, ProductCategory $category)
     {
-        //
+     return view('products.edit',[
+         'item' => $product,
+         'item2' => $category,
+     ]);
     }
 
     /**
@@ -70,9 +78,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $data = $request->all();
+        $product->update($data);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -81,8 +91,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }

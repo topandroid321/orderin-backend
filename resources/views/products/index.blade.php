@@ -7,7 +7,7 @@
     <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-10">
-                <a href="{{ route('users.create') }}" class="inline-block bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded">
+                <a href="{{ route('products.create') }}" class="inline-block bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded">
                 + Create New Data
                 </a>
             </div>
@@ -34,8 +34,8 @@
                                 <td class="border bg-white py-2">{{ $item->stock }}</td>
                                 <td class="border bg-white py-2">{{ $item->tags }}</td>
                                 <td class="border bg-white py-2">
-                                    <a href="{{ route('users.edit', $item->id)}}" class="inline-block py-2 px-4 bg-yellow-400 text-white font-bold rounded">Edit</a>
-                                    <form action="{{ route('users.destroy', $item->id) }}" method="POST" class="inline-block py-2 px-4 bg-red-400 text-white font-bold rounded">
+                                    <a href="{{ route('products.edit', $item->id)}}" class="inline-block py-2 px-4 bg-yellow-400 text-white font-bold rounded">Edit</a>
+                                    <form action="{{ route('products.destroy', $item->id) }}" method="POST" class="inline-block py-2 px-4 bg-red-400 text-white font-bold rounded">
                                         {!! method_field('delete') . csrf_field() !!}
                                         <button type="submit">
                                             Delete
