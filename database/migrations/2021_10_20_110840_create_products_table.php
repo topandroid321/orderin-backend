@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->longText('description');
             $table->string('tags')->nullable();
-            $table->bigInteger('categories_id');
+            $table->foreignId('categories_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductCategory extends Model
 {
 
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes;
 
      /**
      * The attributes that are mass assignable.
@@ -21,6 +21,6 @@ class ProductCategory extends Model
     ];
 
     public function products(){
-        return $this->hasMany(Transaction::class, 'categories_id', 'id');
+        return $this->hasMany(Product::class, 'categories_id', 'id');
     }
 }

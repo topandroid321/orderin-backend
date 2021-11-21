@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
@@ -16,11 +17,37 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::paginate('10');
-        return view('products.index',[
-            'product' => $product
-        ]);
+        if (request()->ajax()) {
+            $query = Product::with('category');
+
+            return DataTables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <a class="inline-block border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
+                            href="' . route('products.gallery.index', $item->id) . '">
+                            Gallery
+                        </a>
+                        <a class="inline-block border border-gray-700 bg-gray-700 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline" 
+                            href="' . route('products.edit', $item->id) . '">
+                            Edit
+                        </a>
+                        <form class="inline-block" action="' . route('products.destroy', $item->id) . '" method="POST">
+                        <button class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline" >
+                            Hapus
+                        </button>
+                            ' . method_field('delete') . csrf_field() . '
+                        </form>';
+                })
+                ->editColumn('price', function ($item) {
+                    return number_format($item->price);
+                })
+                ->rawColumns(['action'])
+                ->make();
+        }
+
+        return view('products.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +56,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $category = ProductCategory::all();
+        return view('products.create',compact('category'));
     }
 
     /**
@@ -65,10 +93,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product, ProductCategory $category)
     {
+    $category = ProductCategory::all();
      return view('products.edit',[
          'item' => $product,
-         'item2' => $category,
-     ]);
+     ], compact('category'));
     }
 
     /**

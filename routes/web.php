@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductGalleryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,10 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
                 Route::resource('/users', UserController::class);
                 Route::resource('/products', ProductController::class);
+                Route::resource('/productCategory', ProductCategoryController::class);
+                Route::resource('/products.gallery', ProductGalleryController::class)->shallow()->only([
+                    'index', 'create', 'store', 'destroy'
+                ]);
             });
 
         Route::group(['middleware' => 'role:Pegawai'], function () {
