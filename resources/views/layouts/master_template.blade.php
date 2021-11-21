@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
   <link rel="stylesheet" type="text/css" href="{{asset('template/dist')}}/css/style.css">
   <link rel="stylesheet" type="text/css" href="{{asset('template/dist')}}/css/new.css">
-  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="{{asset('')}}/css/jquery.dataTables.min.css">
   <style>
     /*Form fields*/
     .dataTables_wrapper select,
