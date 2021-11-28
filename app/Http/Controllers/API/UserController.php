@@ -20,6 +20,7 @@ class UserController extends Controller
                 'username' => ['required','string','max:255','unique:users'],
                 'email' => ['required','string','max:255','unique:users'],
                 'phone' => ['nullable','string','max:255'],
+                'role_id'=> ['required'],
                 'password' => ['required','string',new Password],
             ]);
 
@@ -28,6 +29,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'role_id' => $request->role_id,
                 'password' => Hash::make($request->password),
             ]);
 

@@ -24,10 +24,6 @@
                         name:'action',
                         width: '10%',
                         },
-                        {
-                        orderable: true,
-                        searchable: false,
-                        }, 
                 ],
             });
             new $.fn.dataTable.FixedHeader( table );
