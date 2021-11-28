@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Actions\Fortify\PasswordValidationRules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserRequest extends FormRequest
 {
@@ -15,7 +16,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -26,12 +27,13 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-                'name' => ['required','string','max:255'],
+                'name' => 'required|string|max:255',
                 'password' => ['required',$this->passwordRules()],
-                'profile_photo_path' => ['required','image|file|max:1024'],
-                'username' => ['required','string','max:255'],
-                'email' => ['required','string','max:255','unique:users'],
-                'phone' => ['nullable','string','max:255'],
+                'username' => 'required|string|max:255',
+                'email' => 'required|string|max:255|unique:users',
+                'profile_photo_path' => 'required|image',
+                'role_id' => 'required|string|max:255|in:1,2,3',
+                'phone' => 'nullable|string|max:255',
         ];
     }
 }

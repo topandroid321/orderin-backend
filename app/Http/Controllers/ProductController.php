@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with('category');
+            $query = Product::with('category')
+            ->orderBy('created_at', 'asc');
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
