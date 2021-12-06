@@ -52,12 +52,6 @@
         Transactions in
       </a>
       <!-- end link -->
-      <!-- link -->
-      <a href="./typography.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fad fa-text text-xs mr-2"></i>
-        Data Transactions
-      </a>
-      <!-- end link -->
 
       <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">Report</p>
 

@@ -90,6 +90,7 @@
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="{{asset('template/dist')}}/js/scripts.js"></script>
   <script src="/js/jquery.min.js"></script>
+  <script src="/js/app.js"></script>
   <script src="/js/jquery.dataTables.min.js"></script>
   <!-- end script -->
   @yield('js')
