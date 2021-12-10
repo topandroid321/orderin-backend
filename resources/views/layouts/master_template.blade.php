@@ -76,7 +76,10 @@
     @include('layouts.sidebar')
     @elseif (Auth::user()->role_id === 2)
     @include('layouts.sidebar_pegawai')
+    @else ('dashboardKoki')
+    @include('layouts.sidebar_koki')
     @endif
+
     
     <!-- strat content -->
     <div class="bg-gray-100 flex-1 p-3 md:mt-16"> 

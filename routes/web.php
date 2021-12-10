@@ -49,4 +49,10 @@ Route::group(['middleware' => 'auth'], function(){
             Route::resource('/productsUser', ProductController::class);
 
         });
+        Route::group(['middleware' => 'role:Koki'], function () {
+            Route::get('/dashboardKoki',[DashboardController::class, 'dashboardKoki']);
+            Route::resource('/productsUser', ProductController::class);
+
+        });
+      
  });
