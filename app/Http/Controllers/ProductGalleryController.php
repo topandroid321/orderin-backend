@@ -77,7 +77,7 @@ class ProductGalleryController extends Controller
                 ]);
             }
         }
-
+        notify()->success('Data Succesfuly Added','Add Data');
         return redirect()->route('products.gallery.index', $product->id);
     }
 
@@ -124,7 +124,7 @@ class ProductGalleryController extends Controller
     public function destroy(ProductGallery $gallery)
     {
         $gallery->delete();
-
+        notify()->error('Data Succesfuly Deleted','Delete Data');
         return redirect()->route('products.gallery.index', $gallery->products_id);
     }
 }

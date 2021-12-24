@@ -18,6 +18,10 @@
                     <td class="border px-6 py-4">{{ $transaction->payments }}</td>
                 </tr>
                 <tr>
+                    <th class="border px-6 py-4 text-right">Catatan</th>
+                    <td class="border px-6 py-4">{{ $transaction->catatan }}</td>
+                </tr>
+                <tr>
                     <th class="border px-6 py-4 text-right">Total Price</th>
                     <td class="border px-6 py-4">{{ number_format($transaction->total_price) }}</td>
                 </tr>

@@ -24,7 +24,7 @@
 
       <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">MASTER DATA</p>
       <!-- link -->
-      <a href="/products" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+      <a href="/UserProduct" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fad fa-folder-open text-xs mr-2"></i>
         Product
       </a>
@@ -36,13 +36,6 @@
         <i class="fad fa-text text-xs mr-2"></i>
         Transactions in
       </a>
-      <!-- end link -->
-      <!-- link -->
-      <a href="./typography.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fad fa-text text-xs mr-2"></i>
-        Data Transactions
-      </a>
-      <!-- end link -->
 
     </div>
     <!-- end sidebar content -->

@@ -1,5 +1,6 @@
 @extends('layouts.master_template')
     @section('content')
+    <x:notify-messages />
     <h1 class="h5">Data Users</h1>
         <p>
             {!! __('Dashboard &raquo; Users Data') !!}

@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset('template/dist')}}/css/style.css">
   <link rel="stylesheet" type="text/css" href="{{asset('template/dist')}}/css/new.css">
   <link rel="stylesheet" href="{{asset('')}}/css/jquery.dataTables.min.css">
+  @notifyCss
   <style>
     /*Form fields*/
     .dataTables_wrapper select,
@@ -97,5 +98,6 @@
   <script src="/js/jquery.dataTables.min.js"></script>
   <!-- end script -->
   @yield('js')
+  @notifyJs
 </body>
 </html>

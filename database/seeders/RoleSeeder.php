@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 
-class RoleSedeer extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,9 +20,13 @@ class RoleSedeer extends Seeder
             'redirect_to' => '/dashboard',
             ],
             [
-                'name' => 'Pegawai',
-                'redirect_to' => '/dashboardPegawai',
-                ],
+            'name' => 'Pegawai',
+            'redirect_to' => '/dashboardPegawai',
+            ],
+            [
+            'name' => 'Koki',
+            'redirect_to' => '/dashboardKoki',
+            ],
         ];
 
         foreach ($roles as $role){

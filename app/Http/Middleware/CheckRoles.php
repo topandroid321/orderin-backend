@@ -20,7 +20,7 @@ class CheckRoles
         $rolesFromDatabase = Role::all();
 
         foreach ($rolesFromDatabase as $roles) {
-            if ($role == $roles->name && auth()->user()->role_id != $roles->id) {
+            if ($role == $roles->name && auth()->user()->role_id !== $roles->id) {
                 abort(403);
             }
         }

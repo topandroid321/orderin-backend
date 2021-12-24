@@ -50,7 +50,7 @@ class TransactionController extends Controller
             'items.*.id' => 'exists:products,id',
             'total_price' => 'required',
             'atas_nama' => 'required',
-            'status' => 'required|in:PENDING,SUCCESS'
+            'status' => 'required|in:PENDING,ONPROCESS,SUCCESS,CANCELLED'
         ]);
 
         $transaction = Transaction::create([

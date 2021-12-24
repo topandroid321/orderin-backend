@@ -39,20 +39,17 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::resource('/products.gallery', ProductGalleryController::class)->shallow()->only([
                     'index', 'create', 'store', 'destroy'
                 ]);
-                Route::resource('transaction', TransactionController::class)->only([
-                    'index', 'show', 'edit', 'update'
-                ]);
+                Route::get('transaction/{id}/print/', 'TransactionController@print')->name('transaction.print');;
+                Route::resource('transaction', TransactionController::class);
             });
 
         Route::group(['middleware' => 'role:Pegawai'], function () {
             Route::get('/dashboardPegawai',[DashboardController::class, 'dashboardPegawai']);
-            Route::resource('/productsUser', ProductController::class);
+            Route::get('/UserProduct', [ProductController::class,'indexPegawai']);
 
         });
         Route::group(['middleware' => 'role:Koki'], function () {
             Route::get('/dashboardKoki',[DashboardController::class, 'dashboardKoki']);
-            Route::resource('/productsUser', ProductController::class);
-
         });
       
  });

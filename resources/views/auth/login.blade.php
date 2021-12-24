@@ -12,6 +12,8 @@
             </div>
         @endif
 
+        <h1 class="text-center">Login Now!!</h1>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

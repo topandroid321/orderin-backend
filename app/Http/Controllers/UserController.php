@@ -45,7 +45,7 @@ class UserController extends Controller
         $data ['password'] = Hash::make($request->password);
         $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user','public');
         User::create($data);
-
+        notify()->success('Data Succesfuly Added');
         return redirect()->route('users.index');
     }
 
@@ -90,6 +90,7 @@ class UserController extends Controller
         }
 
         $user->update($data);
+        notify()->warning('Data Succesfuly Edited','Updated');
         return redirect()->route('users.index');
     }
 
@@ -102,6 +103,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        notify()->error('Data Succesfuly Deleted','Deleted');
         return redirect()->route('users.index');
     }
 }

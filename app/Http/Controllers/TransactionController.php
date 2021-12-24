@@ -27,10 +27,21 @@ class TransactionController extends Controller
                             href="' . route('transaction.show', $item->id) . '">
                             Show
                         </a>
+                        <a class="inline-block border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
+                            href="'.route('transaction.print', $item->id,) . '">
+                            Print
+                        </a>
                         <a class="inline-block border border-gray-700 bg-gray-700 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline" 
                             href="' . route('transaction.edit', $item->id) . '">
                             Edit
-                        </a>';
+                        </a>
+                        <form class="inline-block" action="' . route('transaction.destroy', $item->id) . '" method="POST">
+                            <button class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline" >
+                                Hapus
+                            </button>
+                                ' . method_field('delete') . csrf_field() . '
+                            </form>';
+
                 })
                 ->editColumn('total_price', function ($item) {
                     return number_format($item->total_price);
@@ -38,6 +49,8 @@ class TransactionController extends Controller
                 ->rawColumns(['action'])
                 ->make();
         }
+
+        
 
         return view('transaction.index');
     }
@@ -118,8 +131,17 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transaction $transaction, TransactionItems $items)
     {
-        //
+        $items->where('transaction_id',$transaction->id)->delete();
+        $transaction->delete();
+        notify()->error('Data Succesfuly Deleted','Delete Data');
+        return redirect()->route('transaction.index');
+
+    }
+    public function print(Transaction $transaction, $id){
+        return view('transaction.billpayment', [
+            'user' => Transaction::findOrFail($id)
+        ]);
     }
 }
