@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::resource('/products.gallery', ProductGalleryController::class)->shallow()->only([
                     'index', 'create', 'store', 'destroy'
                 ]);
-                Route::get('transaction/{id}/print/', 'TransactionController@print')->name('transaction.print');;
+                Route::get('transaction/{id}/print/', [TransactionController::class,'print'])->name('transaction.print');;
                 Route::resource('transaction', TransactionController::class);
             });
 

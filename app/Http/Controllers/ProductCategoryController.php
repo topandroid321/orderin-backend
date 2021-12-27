@@ -25,11 +25,13 @@ class ProductCategoryController extends Controller
                     return '
                         <a class="inline-block border border-gray-700 bg-gray-700 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline" 
                             href="' . route('productCategory.edit', $item->id) . '">
+                            <i class="fad fa-pencil text-xs mr-2"></i>     
                             Edit
                         </a>
                         <form class="inline-block" action="' . route('productCategory.destroy', $item->id) . '" method="POST">
                         <button class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline" >
-                            Hapus
+                        <i class="fad fa-trash text-xs mr-2"></i>         
+                        Hapus
                         </button>
                             ' . method_field('delete') . csrf_field() . '
                         </form>';
