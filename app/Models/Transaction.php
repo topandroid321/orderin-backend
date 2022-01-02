@@ -22,6 +22,7 @@ class Transaction extends Model
         'total_price',
         'catatan',
         'status',
+        'created_at',
     ];
 
      public function user(){

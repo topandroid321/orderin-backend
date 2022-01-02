@@ -46,6 +46,9 @@ class TransactionController extends Controller
                 ->editColumn('total_price', function ($item) {
                     return number_format($item->total_price);
                 })
+                ->editColumn('created_at', function($item){
+                    return $item->created_at->toDateString();
+                })
                 ->rawColumns(['action'])
                 ->make();
         }
@@ -158,5 +161,25 @@ class TransactionController extends Controller
 
         // Output the generated PDF to Browser
         $dompdf->stream();
+    }
+    //function untuk menampilkan halaman report Transaksi
+    public function transactionReport(){
+        if (request()->ajax()) {
+            $query1 = Transaction::with(['user'])->where('status','SUCCESS');
+
+            return DataTables::of($query1)
+                ->editColumn('total_price', function ($item) {
+                    return number_format($item->total_price);
+                })
+                ->editColumn('created_at', function($item){
+                    return $item->created_at->toDateString();
+                })
+                ->make();
+        }
+        return view('report.transaction');
+    }
+
+    public function printReport(){
+
     }
 }
