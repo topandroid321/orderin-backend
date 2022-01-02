@@ -16,7 +16,7 @@ class ProductCategoryController extends Controller
         $show_product = $request->input('show_product');
 
         if($id){
-            $product = ProductCategory::with(['products'])->find($id);
+            $product = ProductCategory::with(['products','products.galleries'])->find($id);
             
             if($product){
                 return ResponseFormatter::success(

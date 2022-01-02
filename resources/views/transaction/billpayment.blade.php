@@ -11,7 +11,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="window.print();">
     <h1>Orderin</h1>
     <table class="table-css">
         <thead>
@@ -30,30 +30,31 @@
         </thead>
     </table>
     <p>Pesanan</p>
-    <table border="1">
-                @foreach ($items as $item)
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Qyt</th>
-                    </tr>
-                </thead>
+    <table class="table-css">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Qyt</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        @foreach ($items as $item)
                 <tbody>
                     <tr>
                         <td>
                          {{$item->product->name}}
                         </td>
                         <td>
-                            {{$item->product->price}}
+                            {{$item->quantity}}
                         </td>
                         <td>
-                            {{$item->quantity}}
+                            {{$item->product->price}}
                         </td>
                     </tr>
                 </tbody>
                 @endforeach
             </table>
+        <h4>Thanks You</h4>
 </body>
 </html>
 

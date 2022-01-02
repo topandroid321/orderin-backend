@@ -1,8 +1,32 @@
+<style>
+    .isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+</style>
 @extends('layouts.master_template')
 {{-- table --}}
 @section('content')
 <div class="card">
     <div class="card-body grid grid-cols-1 lg:grid-cols-1">
+        <h2>Detail Transaksi</h2>
+        @if($transaction->status == "SUCCESS" || $transaction->status == "ONPROCESS")
+        <a class="inline-block w-32 border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
+        href="{{route('transaction.print', $transaction->id)}}">
+        <i class="fad fa-print text-xs mr-2"></i> 
+        Print Bills
+        </a>
+        @else
+        <a class="isDisabled inline-block w-32 border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
+        href="{{route('transaction.print', $transaction->id)}}">
+        <i class="fad fa-print text-xs mr-2"></i> 
+        Print Bills
+        </a>
+        @endif
+
+        
         <table class="table-auto w-full">
             <tbody>
                 <tr>
