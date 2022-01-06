@@ -16,11 +16,11 @@
                 <table class="table-auto border-collapse border w-full rounded">
                     <thead>
                         <tr class="text-center">
-                            <th class="bg-green-300 text-white border px-6 py-3">ID</th>
-                            <th class="bg-green-300 text-white border px-6 py-3">Name</th>
-                            <th class="bg-green-300 text-white border px-6 py-3">Email</th>
-                            <th class="bg-green-300 text-white border px-6 py-3">Roles</th>
-                            <th class="bg-green-300 text-white border px-6 py-3">Action</th>
+                            <th class="border px-6 py-3">ID</th>
+                            <th class="border px-6 py-3">Name</th>
+                            <th class="border px-6 py-3">Email</th>
+                            <th class="border px-6 py-3">Roles</th>
+                            <th class="border px-6 py-3">Action</th>
                         </tr>
                     </thead>
                     <tbody>

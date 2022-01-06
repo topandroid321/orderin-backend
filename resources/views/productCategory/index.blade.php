@@ -38,9 +38,9 @@
                     <table id="table1" class="py-3">
                         <thead>
                             <tr class="text-center">
-                                <th class="bg-green-300 text-white border px-6 py-3">ID</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Name</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Action</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">

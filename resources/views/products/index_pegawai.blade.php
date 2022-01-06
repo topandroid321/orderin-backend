@@ -11,11 +11,10 @@
                 },
                 columns:[
                         {data: 'id', name:'id',width: '5%',},
-                        {data:'name',name:'name',width:'10%'},
+                        {data:'name',name:'name',width:'5%'},
                         {data:'price',name:'price',width:'10%'},
                         {data:'description',name:'description',width:'10%'},
                         {data:'stock',name:'stock', width: '2%',},
-                        {data:'tags',name:'tags', width:'5%'},
                         {data:'category.name',
                         name:'category.name',
                         width: '5%',
@@ -42,17 +41,16 @@
                     <table id="table1" class="py-3">
                         <thead>
                             <tr class="text-center">
-                                <th class="bg-green-300 text-white border px-6 py-3">ID</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Name</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Price</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Description</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Stock</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Tags</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Category</th>
-                                <th class="bg-green-300 text-white border px-6 py-3">Action</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Stock</th>
+                                <th>Category</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             
                         </tbody>
                     </table>       

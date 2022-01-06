@@ -23,7 +23,7 @@
                 <table id="table1" class="py-3">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
                             <th>Nama Pegawai</th>
                             <th>Pesanan Atasnama</th>
                             <th>Total Harga</th>
@@ -31,7 +31,7 @@
                             <th>Aksi</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             
                         </tbody>
                     </table>       
@@ -52,7 +52,11 @@
                     url: '{{route('transaction.index')}}',
                 },
                 columns: [
-                    { data: 'id', name: 'id', width: '5%'},
+                    {data : null, sortable: false, width: '5%',
+                        render: function (data, type, row, meta) {
+                                    return meta.row + meta.settings._iDisplayStart + 1;
+                                    }  
+                        },
                     { data: 'user.name', name: 'user.name' },
                     { data: 'atas_nama', name: 'atas_nama' },
                     { data: 'total_price', name: 'total_price' },

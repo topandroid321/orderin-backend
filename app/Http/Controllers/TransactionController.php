@@ -8,6 +8,8 @@ use App\Models\TransactionItems;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Date;
+use Symfony\Component\Console\Input\Input;
 
 class TransactionController extends Controller
 {
@@ -179,7 +181,51 @@ class TransactionController extends Controller
         return view('report.transaction');
     }
 
-    public function printReport(){
+    // print all report transaction
+    public function printReportAll(Transaction $transaction){
+        
+        $total = Transaction::with(['user'])->where('status','SUCCESS')
+        ->sum('total_price');
+        $transaction = Transaction::with(['user'])->where('status','SUCCESS')
+        ->paginate();
+        $html = view('report.printall', compact('transaction','total'));
 
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4','potrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream('Report All -'.Date('Y-m-d').'.pdf');
+    }
+
+    public function printByDate(Request $request,Transaction $transaction){
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $total = Transaction::with(['user'])->where('status','SUCCESS')
+        ->whereBetween('created_at', [$start, $end])
+        ->sum('total_price');
+        $transaction = Transaction::with(['user'])->where('status','SUCCESS')
+        ->whereBetween('created_at', [$start, $end])
+        ->paginate();
+        $html = view('report.printbydate', compact('transaction','total'));
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4','potrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream('Report All -'.Date('Y-m-d').'.pdf');
     }
 }
