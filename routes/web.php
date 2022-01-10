@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductGalleryController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::get('/send', function(){
 //dashboard
 
 Route::group(['middleware' => 'auth'], function(){
-        Route::group(['middleware' => ['role:admin'|'role:Pegawai']], function(){
+        Route::group(['middleware' => ['role:admin']], function(){
                 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
                 Route::resource('/users', UserController::class);
                 Route::resource('/products', ProductController::class);
@@ -59,15 +60,13 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('UpdateStock', [ProductController::class,'updateStock'])->name('products.updateStock');
             //Route print bils atau bukti pembayaran
             Route::get('transaction/{id}/print/', [TransactionController::class,'print'])->name('transaction.print');
-            //Route print Transaksi all
-            Route::get('printReportAll', [TransactionController::class,'printReportAll'])->name('printReportAll');
-            //Route Page Report
-            Route::get('transactionReport', [TransactionController::class,'transactionReport'])->name('transactionReport');
             Route::resource('transaction', TransactionController::class);
 
         });
-        Route::group(['middleware' => 'role:Koki'], function () {
+        Route::group(['middleware' => ['role:admin'|'role:Pegawai'|'role:Koki']], function () {
             Route::get('/dashboardKoki',[DashboardController::class, 'dashboardKoki']);
+            Route::get('transactionKoki',[TransactionController::class,'indexKoki'])->name('transaction.indexKoki');
+            Route::resource('transaction', TransactionController::class);
         });
       
  });

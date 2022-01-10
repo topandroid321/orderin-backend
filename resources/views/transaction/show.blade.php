@@ -20,7 +20,7 @@
         </a>
         @else
         <a class="isDisabled inline-block w-32 border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
-        href="{{route('transaction.print', $transaction->id)}}">
+        href="">
         <i class="fad fa-print text-xs mr-2"></i> 
         Print Bills
         </a>

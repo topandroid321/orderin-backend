@@ -21,7 +21,8 @@ class TransactionController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Transaction::with(['user']);
+            $query = Transaction::with(['user'])->where('status','!=','SUCCESS')
+            ->orderBy('id','DESC');
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
@@ -227,5 +228,29 @@ class TransactionController extends Controller
 
         // Output the generated PDF to Browser
         $dompdf->stream('Report All -'.Date('Y-m-d').'.pdf');
+    }
+
+
+    // index untuk user role koki
+    public function indexKoki()
+    {
+        if (request()->ajax()) {
+            $query = Transaction::with(['user'])->where('status','ONPROCESS');
+
+            return DataTables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        ';
+
+                })
+                ->editColumn('total_price', function ($item) {
+                    return number_format($item->total_price);
+                })
+                ->editColumn('created_at', function($item){
+                    return $item->created_at->toDateString();
+                })
+                ->make();
+        }
+        return view('transaction.indexkoki');
     }
 }
