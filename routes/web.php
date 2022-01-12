@@ -60,12 +60,14 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('UpdateStock', [ProductController::class,'updateStock'])->name('products.updateStock');
             //Route print bils atau bukti pembayaran
             Route::get('transaction/{id}/print/', [TransactionController::class,'print'])->name('transaction.print');
+            Route::get('transactionData', [TransactionController::class,'transactionData'])->name('transactionData');
             Route::resource('transaction', TransactionController::class);
 
         });
         Route::group(['middleware' => ['role:admin'|'role:Pegawai'|'role:Koki']], function () {
             Route::get('/dashboardKoki',[DashboardController::class, 'dashboardKoki']);
             Route::get('transactionKoki',[TransactionController::class,'indexKoki'])->name('transaction.indexKoki');
+            Route::post('updateStatus',[TransactionController::class,'updateStatus'])->name('transaction.updateStatus');
             Route::resource('transaction', TransactionController::class);
         });
       

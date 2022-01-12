@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
 class TransactionController extends Controller
@@ -55,9 +56,6 @@ class TransactionController extends Controller
                 ->rawColumns(['action'])
                 ->make();
         }
-
-        
-
         return view('transaction.index');
     }
     /**
@@ -240,6 +238,11 @@ class TransactionController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
+                    <a class="inline-block border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
+                            href="' . route('transaction.show', $item->id) . '">
+                            <i class="fad fa-eye text-xs mr-2"></i> 
+                            Show
+                        </a>
                         ';
 
                 })
@@ -252,5 +255,33 @@ class TransactionController extends Controller
                 ->make();
         }
         return view('transaction.indexkoki');
+    }
+
+    // membuat function update status menjadi success, untuk role user
+    public function updateStatus(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('status');
+        DB::table('transactions')
+        ->where('id', $id)
+        ->update(['status' => $status]);
+        return redirect()->route('transaction.indexKoki');
+    }
+
+    // mengambil data transaction untuk ditampilkan di menu pegawai/kasir
+    public function transactionData(){
+        if (request()->ajax()) {
+            $query1 = Transaction::with(['user'])->where('status','SUCCESS');
+
+            return DataTables::of($query1)
+                ->editColumn('total_price', function ($item) {
+                    return number_format($item->total_price);
+                })
+                ->editColumn('created_at', function($item){
+                    return $item->created_at->toDateString();
+                })
+                ->make();
+        }
+        return view('report.datatransaction');
     }
 }

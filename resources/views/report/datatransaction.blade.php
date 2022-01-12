@@ -3,27 +3,20 @@
 @section('content')
 <div class="card">
     <div class="card-body grid grid-cols-1 lg:grid-cols-1">
-        <h1 class="h5">Transaction</h1>
+        <h1 class="h5">Data Transaction Success</h1>
         <p>
             {!! __('Dashboard &raquo; Transaction') !!}
             </p>
-                <div class="mb-10 py-5">
-                    <div class="inline-block relative w-40 py-4">
-                    
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                      </div>
-                    </div>
+                <div class="mb-12 py-5">
                 <table id="table1" class="py-3">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama Pegawai</th>
                             <th>Pesanan Atasnama</th>
-                            <th>Tanggal Trx</th>
+                            <th>Tgl Transaksi</th>
                             <th>Total Harga</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody class="text-center">
@@ -44,7 +37,7 @@
                 responsive: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{route('transaction.index')}}',
+                    url: '{{route('transactionData')}}',
                 },
                 columns: [
                     {data : null, sortable: false, width: '5%',
@@ -54,23 +47,10 @@
                         },
                     { data: 'user.name', name: 'user.name' },
                     { data: 'atas_nama', name: 'atas_nama' },
-                    { data:'created_at', name: 'created_at'},
+                    { data: 'created_at', name: 'created_at'},
                     { data: 'total_price', name: 'total_price' },
                     { data: 'status', name: 'status' },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        width: '25%'
-                    },
                 ],
-            });
-
-            $('.filter').change(function(){
-                table.columns($(this).data('column'))
-                .search( $(this).val())
-                .draw();
             });
             setInterval( function () {
                 table.ajax.reload();

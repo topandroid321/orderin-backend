@@ -12,7 +12,13 @@
 <div class="card">
     <div class="card-body grid grid-cols-1 lg:grid-cols-1">
         <h2>Detail Transaksi</h2>
-        @if($transaction->status == "SUCCESS" || $transaction->status == "ONPROCESS")
+        @if (Auth::user()->role_id == 3)
+        <a class="isDisabled inline-block w-32 border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
+        href="">
+        <i class="fad fa-print text-xs mr-2"></i> 
+        Print Bills
+        </a>
+        @elseif($transaction->status == "SUCCESS" || $transaction->status == "ONPROCESS")
         <a class="inline-block w-32 border border-blue-700 bg-blue-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
         href="{{route('transaction.print', $transaction->id)}}">
         <i class="fad fa-print text-xs mr-2"></i> 
@@ -69,6 +75,41 @@
                         </thead>
                         <tbody></tbody>
                     </table>
+
+                    <div class="relative h-20 w-600">
+                        {{-- tombol back ketika role user koki --}}
+                        @if (Auth::user()->role_id === 3)
+                        <div class="absolute top-15 left-0 h-16 w-20 py-10">
+                            <a class="text-center inline-block w-15 border border-blue-700 bg-red-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-red-800 focus:outline-none focus:shadow-outline" 
+                            href="{{route('transaction.indexKoki')}}">
+                            <i class="fad fa-chevron-left text-xs mr-2"></i>Back
+                            </a>
+                        </div>
+                        {{-- tombol back ketika role user admin dan kasir --}}
+                        @else
+                        <div class="absolute top-15 left-0 h-16 w-20 py-10">
+                            <a class="text-center inline-block w-15 border border-blue-700 bg-red-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-red-800 focus:outline-none focus:shadow-outline" 
+                            href="{{route('transaction.index')}}">
+                            <i class="fad fa-chevron-left text-xs mr-2"></i>Back
+                            </a>
+                        </div>
+                        @endif
+                        {{-- hanya aktif ketika role user koki --}}
+                        @if (Auth::user()->role_id === 3)
+                        <div class="absolute top-15 right-0 h-16 w-23 py-10">
+                            <form action="{{Route('transaction.updateStatus')}}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{$transaction->id}}">
+                                <input type="hidden" name="status" value="SUCCESS">
+                                <button class="text-center inline-block w-15 border border-blue-700 bg-green-700 text-white rounded-md px-2 py-2 mb-2 transition duration-500 ease select-none hover:bg-green-800 focus:outline-none focus:shadow-outline" type="submit">
+                                    <i class="fad fa-check-circle text-xs mr-2"></i> Done
+                                </button>
+                            </form>
+                            
+                        </div>
+                        @endif
+                      </div>
+                    
                 </div>
             </div>
         </div>

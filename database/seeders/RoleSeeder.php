@@ -25,7 +25,7 @@ class RoleSeeder extends Seeder
             ],
             [
             'name' => 'Koki',
-            'redirect_to' => '/dashboardKoki',
+            'redirect_to' => '/transactionKoki',
             ],
         ];
 

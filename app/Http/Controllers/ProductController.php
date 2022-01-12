@@ -111,6 +111,15 @@ class ProductController extends Controller
         ]);
     }
 
+    public function updateStock(Request $request,Product $product){
+        $id = $request->input('id');
+        $stok = $request->input('stock');
+        DB::table('Products')
+        ->where('id', $id)
+        ->update(['stock' => $stok]);
+        return redirect()->route('products.indexPegawai');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -126,14 +135,7 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function updateStock(Request $request,Product $product){
-        $id = $request->input('id');
-        $stok = $request->input('stock');
-        DB::table('Products')
-        ->where('id', $id)
-        ->update(['stock' => $stok]);
-        return redirect()->route('products.indexPegawai');
-    }
+    
 
     /**
      * Remove the specified resource from storage.
